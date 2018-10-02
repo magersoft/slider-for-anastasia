@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>	
+
+	<meta charset="UTF-8">
+	<title>Slider</title>
+	<script>
+		/* Images list
+		 * @array
+		 * Тестовые данные для примера
+		 */
+		var images = [
+			'https://images.pexels.com/photos/672358/pexels-photo-672358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/59519/pexels-photo-59519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/386009/pexels-photo-386009.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+		];
+		var images2 = [
+			'https://images.pexels.com/photos/239520/pexels-photo-239520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/408503/pexels-photo-408503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/372098/pexels-photo-372098.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+		];		
+		var images3 = [
+			'https://images.pexels.com/photos/458555/pexels-photo-458555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/723240/pexels-photo-723240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+			'https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+		];		
+
+		/*
+		 * Function init slider
+		 * args: @array image, @string selector
+		 * В первый аргумент ф-ии передаем данные для слайдера
+		 * Во второй аргумент название слайдера
+		 */
+		function sliderInit(array, sliderName) {
+			var app = document.getElementById('app');
+			var slider = document.createElement('div');
+			slider.setAttribute('id', sliderName);
+			app.appendChild(slider);
+
+			var elSlider = document.getElementById(sliderName);
+
+			array.forEach(function(item, i, array) {
+				var slideItem = document.createElement('div');
+				slideItem.className = 'image';
+				slideItem.innerHTML = '<img src="' + item + '" alt="">'
+				elSlider.appendChild(slideItem);
+			});
+
+			$(elSlider).slick({
+				dots: true,
+				arrow: true,
+				infinite: true,
+				speed: 300,
+				slidesToShow: 1,
+				adaptiveHeight: true
+			});			
+		}	
+	</script>
+	<style>
+		#app {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between
+		}
+		#app > div {
+			max-width: 500px;
+			margin:  0 auto;
+		}
+		.image img {
+			width: 500px;
+			height: 300px
+		}
+
+		.slick-next:before, .slick-prev:before  {
+			color: black;
+		}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+	<script>
+			// Вызов функции		
+			sliderInit(images, 'slider-1');
+			sliderInit(images2, 'slider-2');
+			sliderInit(images3, 'slider-3');
+	</script>	
+</body>
+</html>
